@@ -78,7 +78,8 @@ class MainActivity : AppCompatActivity() {
 
                     val data = Gson().fromJson<List<Puppy>>(
                         PuppyData.data,
-                        object : TypeToken<List<Puppy>>() {}.type)
+                        object : TypeToken<List<Puppy>>() {}.type
+                    )
                     ShowPuppyList(data)
                 }
             }
@@ -86,7 +87,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     @Composable
-    fun ShowPuppyList(data:List<Puppy>) {
+    fun ShowPuppyList(data: List<Puppy>) {
         Box(
             Modifier
                 .fillMaxWidth()
@@ -104,9 +105,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     @SuppressLint("QueryPermissionsNeeded")
-    private fun goPuppyDetail(puppy:Puppy) {
+    private fun goPuppyDetail(puppy: Puppy) {
         val intent = Intent(this, PuppyDetailActivity::class.java).also {
-            it.putExtra("data",puppy)
+            it.putExtra("data", puppy)
         }
         intent.resolveActivity(packageManager)?.let {
             startActivity(intent)
@@ -114,14 +115,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     @Composable
-    fun ImageListItem(puppy:Puppy) {
+    fun ImageListItem(puppy: Puppy) {
         Column(
             Modifier
                 .padding(10.dp, 0.dp, 10.dp, 0.dp)
                 .fillMaxWidth()
                 .clickable {
                     goPuppyDetail(puppy)
-                }) {
+                }
+        ) {
             Row(
                 Modifier.padding(10.dp, 10.dp, 0.dp, 0.dp)
             ) {
